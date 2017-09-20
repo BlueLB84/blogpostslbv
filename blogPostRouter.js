@@ -5,24 +5,20 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {BlogPosts} = require('./models');
+const {checkParams} = require('./middlewares/checkParams');
+const {checkID} = require('./middlewares/checkID');
+
 
 BlogPosts.create('Blog Post 1', 'This is the first blog post.', 'LBV');
 BlogPosts.create('Blog Post 2', 'This is the second blog post.', 'MBV');
 
+
 router.get('/', (req, res) => {
+	
 	res.json(BlogPosts.get());
 });
 
-router.post('/', jsonParser, (req, res) => {
-	const requiredFields = ['title', 'content', 'author'];
-	for (let i=0; i<requiredFields.length; i++) {
-		const field = requiredFields[i];
-		if (!(field in req.body)) {
-			const message = `Missing \`${field}\` in request body`;
-			console.error(message);
-			return res.status(400).send(message);
-		}
-	}
+router.post('/', jsonParser, checkParams(['title', 'content', 'author']), (req, res) => {
 	const postItem = BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.publishDate);
 	res.status(201).json(postItem); 
 	});
@@ -33,28 +29,13 @@ router.delete('/:id', (req, res) => {
 	res.status(204).end();
 });
 
-router.put('/:id', jsonParser, (req, res) => {
-	const requiredFields = ['title', 'content', 'author', 'id'];
-	for (let i=0; i<requiredFields.length; i++) {
-		const field = requiredFields[i];
-		if (!(field in req.body)) {
-			const message = `Missing \`${field}\` in request body`;
-			console.error(message);
-			return res.status(400).send(message);
-		}
-	}
-	if (req.params.id !== req.body.id) {
-		const message = (`Request path id (${req.params.id}) and request body id (${req.body.id}) must match`);
-		console.error(message);
-		return res.status(400).send(message);
-	}
+router.put('/:id', jsonParser, checkParams(['title', 'content', 'author', 'id']), checkID(), (req, res) => {
 	console.log(`Updating blog entry \`${req.params.id}\``);
 	const updatedBlogPost = BlogPosts.update({
-		id: req.params.id,
-		title: req.params.title,
-		content: req.params.content,
-		author: req.params.author,
-		publishDate: req.params.publishDate
+		id: req.body.id,
+		title: req.body.title,
+		content: req.body.content,
+		author: req.body.author,
 	});
 	res.status(204).end();
 });
