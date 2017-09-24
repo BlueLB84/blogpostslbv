@@ -43,28 +43,33 @@ describe('Blog Posts', function() {
 				res.body.should.be.a('object');
 				res.body.should.include.keys('id', 'title', 'content', 'author');
 				res.body.id.should.not.be.null;
-				res.body.should.deep.equal(Object.assign(newPost, {id: res.body.id}));
+				res.body.should.deep.equal(Object.assign(newPost, {id: res.body.id, publishDate: res.body.publishDate}));
 			});
 	});
+
 
 	it('should update blog posts on PUT', function() {
-		const updateData = {
-			author: 'Chief',
-			title: 'This is a test title'
-		};
+	    const updateData = {
+	      author: 'Chief',
+		  title: 'This is a test title',
+		  content: 'This is test content'
+	    };
 
-		return chai.request(app)
-			.get('/blog-posts')
-			.then(function(res) {
-				updateData.id = res.body[0].id;
-				return chai.request(app)
-					.put(`/blog-posts/${updateData.id}`)
-					.send(updateData);
-			})
-			.then(function(res) {
-				res.should.have.status(204);
-			});
+	    return chai.request(app)
+	      .get('/blog-posts')
+	      .then(function(res) {
+	        updateData.id = res.body[0].id;
+	        updateData.publishDate = res.body[0].publishDate;
+
+	        return chai.request(app)
+	          .put(`/blog-posts/${updateData.id}`)
+	          .send(updateData);
+	      })
+	      .then(function(res) {
+	        res.should.have.status(204);
+	      });
 	});
+
 
 	it('should delete a post on DELETE', function() {
 		return chai.request(app)
