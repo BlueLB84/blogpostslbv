@@ -14,7 +14,6 @@ BlogPosts.create('Blog Post 2', 'This is the second blog post.', 'MBV');
 
 
 router.get('/', (req, res) => {
-	
 	res.json(BlogPosts.get());
 });
 
