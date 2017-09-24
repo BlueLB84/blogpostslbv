@@ -7,8 +7,10 @@ const blogPostRouter = require('./blogPostRouter');
 
 app.use(morgan('common'));
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/views/index.html');
+	res.sendFile(__dirname + '/public/index.html');
 });
 
 app.use('/blog-posts', blogPostRouter);
