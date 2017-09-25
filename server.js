@@ -18,7 +18,7 @@ app.use('/blog-posts', blogPostRouter);
 let server;
 
 function runServer() {
-	const port = process.env.Port || 8080;
+	const port = process.env.PORT || 8080;
 	return new Promise((resolve, reject) => {
 		server = app.listen(port, () => {
 			console.log(`Your app is listening on port ${port}`);
