@@ -2,7 +2,7 @@
   "name": "blogpostslbv",
   "version": "1.0.0",
   "description": "Thinkful challenge to create a CRUD API for a blogging platform",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "mocha ./test"
