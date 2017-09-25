@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: HfSLYCszKQ/G6Px6kEE7vxzUgA1YZLLUnTw+gEYnkosAPpVJVXdjLQIRnxkqePfWcyiTYzBLcmD/mkotVB05lcPR0axjOXR87wJ3kASB4epx3CGjBs2Bnm20eaADolicQ+iY6AqVNHt0YQTxTkHlFKZsniBpk/ePIr00jS6asH9UO1zrFpmE71TVV/2jsRXX6wVNmp6s+NloHm1Cdb2E6bZ6yuWwDAZmLJqF8rsMkuRUcffIp84QD+JMAz5ENnh+k2h5arjrfjFRT6ZLd2kJCZ5HWHoRXb+b0RFIDIuYXtDDJ3mbv80dTmgh/44O5k1vKsI+EFVgsw3riPbTSi69rsUYLs61IOrnxN2FYv5WJIEJRg9//pidaPFIjrB/VL2oBrP6qQY2Ms+hvE/dAHW902e/E95FM8qBNUyGwntAA/KqjliDxK6MW6g2JOyppd1wFYJkIOTaaZ63qhTIYZRHrPlnUQw84FvEhPYfQwI+7ORjKmvD6+vrqBtfiHQDsKrea/IkAVtfd4zklWLLOvmuBXXI0ECEBAwQZGFehf8AUguwnBZ39kZ6USS/BuH5gf6X41Zn2QEjTrqfWnsOAkc5ELXSjpyUoVqwGXp2oX0i4pey4l5K9ZPhokR+vkGMlOszjYjN3U6ceImrofyjtFJwy+x5E2mMXbvYjVkB1mimuSs=
-  app: obscure-forest-20155
+  app: quiet-fortress-86707
   on:
     repo: BlueLB84/blogpostslbv
